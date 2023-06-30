@@ -175,9 +175,9 @@ class OnPolicyAlgorithm(BaseAlgorithm):
             if isinstance(self.action_space, spaces.Box):
                 clipped_actions = np.clip(actions, self.action_space.low, self.action_space.high)
 
-            new_obs, rewards, dones, infos = env.step(clipped_actions)
+            new_obs, rewards, dones, infos = env.step(clipped_actions)#這個while，這邊一定是一次進一步
 
-            self.num_timesteps += env.num_envs
+            self.num_timesteps += env.num_envs #看起來self.num_timesteps應該是統計做幾次
 
             # Give access to local variables
             callback.update_locals(locals())
